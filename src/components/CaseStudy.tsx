@@ -70,7 +70,7 @@ export function CaseStudy({ data, collapsible = false, headingLevel = 3 }: { dat
       {collapsible ? (
         <details className="case-details">
           <summary>
-            <span className="summary-open">원인 분석과 구현 과정 보기</span>
+            <span className="summary-open">자세히 보기</span>
             <span className="summary-close">접기</span>
           </summary>
           {detail}
@@ -97,8 +97,6 @@ export function CaseStudy({ data, collapsible = false, headingLevel = 3 }: { dat
         <div className="case-meta">
           <h4 className="case-block-title">사용 기술</h4>
           <Tags items={data.stack} />
-          <h4 className="case-block-title">강조 역량</h4>
-          <p className="competencies">{data.competencies.join(" · ")}</p>
         </div>
       </div>
     </article>

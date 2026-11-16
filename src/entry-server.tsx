@@ -40,7 +40,7 @@ export function getRoutes(now: Date): Route[] {
       path: "career/",
       title: "경력기술서 | 박은진 — 풀스택 개발자",
       description:
-        "(주)아이티포워드 한국도로공사 통행료 대국민 웹서비스 개발·운영 경력과 5가지 문제 해결 사례(대용량 조회 장애, 누락 데이터 자동 보완, IP 자동 차단, SVN 구축, 카드번호 마스킹)를 정리한 경력기술서.",
+        "(주)아이티포워드 한국도로공사 통행료 대국민 웹서비스 개발·운영 경력과 문제 해결 사례(대용량 조회 장애, 누락 데이터 자동 보완, IP 자동 차단, 카드번호 마스킹)를 정리한 경력기술서.",
       render: () => html(<Career now={now} updated={updated} />),
     },
     ...projects.map<Route>((p) => ({

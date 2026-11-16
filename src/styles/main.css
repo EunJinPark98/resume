@@ -737,9 +737,9 @@ main:focus {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
-@media (min-width: 1040px) {
+@media (min-width: 900px) {
   .achievements {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
 .achievement {
@@ -1112,10 +1112,6 @@ main:focus {
 .case-meta .tags {
   margin: 0 0 20px;
 }
-.competencies {
-  font-size: 0.9rem;
-  color: var(--ink-2);
-}
 .case-note,
 .callout {
   margin-top: 16px;
@@ -1256,26 +1252,6 @@ main:focus {
 .project-body > p {
   color: var(--ink-2);
 }
-.project-facts {
-  margin: 24px 0 0;
-  border-top: 1px solid var(--line);
-}
-.project-facts > div {
-  display: grid;
-  grid-template-columns: 84px minmax(0, 1fr);
-  gap: 16px;
-  padding: 12px 0;
-  border-bottom: 1px solid var(--line);
-  font-size: 0.95rem;
-}
-.project-facts dt {
-  color: var(--muted);
-  font-size: 0.85rem;
-  padding-top: 2px;
-}
-.project-facts dd {
-  margin: 0;
-}
 .project-actions {
   display: flex;
   flex-wrap: wrap;
@@ -1284,180 +1260,8 @@ main:focus {
   margin-top: 28px;
 }
 
-/* diagrams */
-.diagram {
-  margin: 0;
-  padding: clamp(20px, 3vw, 28px);
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  background: var(--surface);
-}
-.diagram figcaption {
+.project-features {
   margin-top: 16px;
-  font-size: 0.85rem;
-  color: var(--muted);
-}
-.diagram-flow {
-  display: grid;
-  gap: 0;
-  justify-items: stretch;
-}
-.node {
-  display: grid;
-  gap: 2px;
-  padding: 12px 16px;
-  border: 1px solid var(--line-strong);
-  border-radius: 8px;
-  background: var(--bg);
-}
-.node code {
-  font-size: 0.85rem;
-  color: var(--ink);
-  font-weight: 600;
-}
-.node small {
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  color: var(--muted);
-}
-.node-kicker {
-  font-family: var(--font-mono);
-  font-size: 0.7rem;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--muted);
-}
-.node-accent {
-  border-color: var(--accent);
-  background: var(--accent-soft);
-}
-.node-accent .node-kicker {
-  color: var(--accent);
-}
-.edge {
-  justify-self: center;
-  width: 1px;
-  height: 22px;
-  background: var(--line-strong);
-  position: relative;
-}
-.edge::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: -3px;
-  border: 3.5px solid transparent;
-  border-top: 5px solid var(--line-strong);
-  transform: translateY(5px);
-}
-.diagram-table {
-  width: 100%;
-  margin-top: 20px;
-  border-collapse: collapse;
-  font-size: 0.88rem;
-}
-.diagram-table th,
-.diagram-table td {
-  padding: 8px 4px;
-  text-align: left;
-  border-bottom: 1px solid var(--line);
-}
-.diagram-table th {
-  font-size: 0.75rem;
-  font-weight: 600;
-  color: var(--muted);
-}
-.diagram-table code {
-  color: var(--accent);
-  font-weight: 600;
-}
-
-.pipeline {
-  list-style: none;
-  display: grid;
-  gap: 8px;
-}
-.pipeline li {
-  display: grid;
-  grid-template-columns: 30px minmax(0, 1fr);
-  grid-template-rows: auto auto;
-  column-gap: 12px;
-  padding: 12px 14px;
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  background: var(--bg);
-}
-.pipeline li.is-gate {
-  border-color: var(--accent);
-  background: var(--accent-soft);
-}
-.pipeline-no {
-  grid-row: span 2;
-  font-family: var(--font-mono);
-  font-size: 0.78rem;
-  font-weight: 700;
-  color: var(--accent);
-  padding-top: 2px;
-}
-.pipeline strong {
-  font-size: 0.95rem;
-}
-.pipeline span:last-child {
-  font-size: 0.85rem;
-  color: var(--muted);
-  line-height: 1.55;
-}
-
-/* other projects */
-.other-projects {
-  list-style: none;
-  border-top: 2px solid var(--ink);
-}
-.other-projects > li {
-  display: grid;
-  gap: 4px 32px;
-  padding: 22px 0;
-  border-bottom: 1px solid var(--line);
-}
-@media (min-width: 900px) {
-  .other-projects > li {
-    grid-template-columns: 200px minmax(0, 1fr) 210px 130px;
-    align-items: baseline;
-  }
-}
-.other-head {
-  display: flex;
-  flex-direction: column;
-}
-.other-head strong {
-  font-size: 1.05rem;
-}
-.other-head .muted {
-  font-family: var(--font-mono);
-  font-size: 0.78rem;
-}
-.other-projects p {
-  margin: 0;
-  font-size: 0.95rem;
-  color: var(--ink-2);
-}
-.other-projects .other-stack {
-  font-size: 0.85rem;
-  color: var(--muted);
-}
-.other-links {
-  display: flex;
-  gap: 16px;
-}
-@media (min-width: 900px) {
-  .other-links {
-    justify-content: flex-end;
-  }
-}
-@media (max-width: 599.98px) {
-  .achievement-from[aria-hidden] {
-    display: none;
-  }
 }
 
 /* ==========================================================================
@@ -2006,7 +1810,6 @@ html:not(.js) .copy-btn {
   }
   /* 인쇄본은 핵심만 — 역량 키워드는 화면에서만 */
   .case-meta .case-block-title:nth-of-type(2),
-  .competencies,
   .doc-strengths {
     display: none;
   }

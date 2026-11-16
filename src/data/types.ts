@@ -63,7 +63,6 @@ export interface CaseStudy {
   /** 설계상 감수한 점 · 면접에서 설명할 포인트 */
   note?: string;
   stack: string[];
-  competencies: string[];
 }
 
 export interface TimelineEntry {
@@ -115,16 +114,6 @@ export interface Project {
   links: LinkItem[];
   image?: { src: string; srcSmall?: string; alt: string; width: number; height: number };
   gallery?: { src: string; alt: string; width: number; height: number; caption: string }[];
-  /** 이미지가 없을 때 보여줄 다이어그램 종류 */
-  diagram?: "websocket" | "audio-pipeline";
-}
-
-export interface OtherProject {
-  name: string;
-  period: string;
-  summary: string;
-  stack: string[];
-  links: LinkItem[];
 }
 
 export interface SkillGroup {

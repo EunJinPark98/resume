@@ -1,4 +1,3 @@
-import { AudioPipelineDiagram, WebSocketDiagram } from "../components/Diagrams";
 import { Icon } from "../components/Icon";
 import { Page, Tags } from "../components/Layout";
 import { SmartLink } from "../components/SmartLink";
@@ -73,10 +72,6 @@ export function ProjectDetail({ p, updated }: { p: Project; updated: string }) {
                   decoding="async"
                 />
               </figure>
-            ) : p.diagram === "websocket" ? (
-              <WebSocketDiagram />
-            ) : p.diagram === "audio-pipeline" ? (
-              <AudioPipelineDiagram />
             ) : null}
 
             <section aria-labelledby="d-purpose">

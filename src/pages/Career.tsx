@@ -2,7 +2,7 @@ import { CaseStudy } from "../components/CaseStudy";
 import { Page, Tags } from "../components/Layout";
 import { caseStudies, experience } from "../data/experience";
 import { profile, strengths } from "../data/profile";
-import { otherProjects, projects } from "../data/projects";
+import { projects } from "../data/projects";
 import { certifications, skillGroups } from "../data/skills";
 import { href, tenure } from "../lib/site";
 
@@ -125,14 +125,6 @@ export function Career({ now, updated }: { now: Date; updated: string }) {
                   <p className="doc-stack">{p.stack.join(" · ")}</p>
                 </div>
               ))}
-              <h3 className="mini-title">기타 프로젝트</h3>
-              <ul className="bullets">
-                {otherProjects.map((o) => (
-                  <li key={o.name}>
-                    <strong>{o.name}</strong> ({o.period}) — {o.summary}
-                  </li>
-                ))}
-              </ul>
             </div>
           </section>
 
