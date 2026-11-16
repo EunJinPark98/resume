@@ -59,12 +59,6 @@ export function Footer({ updated }: { updated: string }) {
         <p>
           © {updated.slice(0, 4)} {profile.nameEn}. 최종 수정 {updated}.
         </p>
-        <p className="footer-meta">
-          React · TypeScript · Vite로 정적 생성한 페이지입니다.{" "}
-          <a href="https://github.com/EunJinPark98/resume" target="_blank" rel="noopener noreferrer">
-            소스 보기<span className="sr-only"> (새 탭에서 열림)</span>
-          </a>
-        </p>
       </div>
     </footer>
   );
