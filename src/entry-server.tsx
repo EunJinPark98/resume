@@ -42,7 +42,7 @@ export function getRoutes(now: Date): Route[] {
       path: "experience/",
       title: "경력기술서 | 박은진 — Java/Spring 백엔드 · 풀스택 개발자",
       description:
-        "(주)아이티포워드에서 한국도로공사 고속도로 통행료 대국민 웹서비스를 개발·운영한 경력기술서. 대량 조회 장애 해소, 로그인 누락 데이터 일괄 보완, IP 기반 비정상 로그인 차단, 카드번호 마스킹, SVN 형상관리 개선 사례.",
+        "(주)아이티포워드에서 한국도로공사 고속도로 통행료 대국민 웹서비스를 개발·운영한 경력기술서. 대량 조회 장애 해소, 로그인 누락 데이터 일괄 보완, IP 기반 비정상 로그인 차단 사례.",
       render: () => html(<Experience now={now} updated={updated} />),
     },
     {

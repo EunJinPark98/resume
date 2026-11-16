@@ -18,17 +18,15 @@ export const experience: Experience = {
     "Java · Spring MVC · JSP · iBATIS 기반 신규 기능 개발과 기존 기능 개선",
     "대량 데이터 조회 기능의 SQL 작성과 조회 구조 개선",
     "데이터 오류로 발생하는 민원의 원인 분석과 데이터 보완",
-    "보안 취약점 대응과 개인정보 보호 처리",
+    "보안 취약점 대응",
     "장애 대응, 정기 당직을 통한 웹 애플리케이션 서버 모니터링",
   ],
   highlights: [
     { text: "로그인 관련 민원 하루 평균 약 5건 → 주 1건 미만", caseId: "case-login-data" },
     { text: "월말 대량 조회로 반복되던 장애와 서버 재기동 문제 해소", caseId: "case-bulk-query" },
     { text: "IP 기반 비정상 로그인 차단 기능 개발", caseId: "case-ip-block" },
-    { text: "카드번호 마스킹 공통화, 원본 데이터 전달 구조 개선", caseId: "case-masking" },
-    { text: "SVN 기반 형상관리 환경 개선", caseId: "case-svn" },
   ],
-  stack: ["Java", "Spring MVC", "JSP", "JavaScript", "jQuery", "iBATIS", "Oracle", "Tibero", "Tomcat", "SVN"],
+  stack: ["Java", "Spring MVC", "JSP", "JavaScript", "jQuery", "iBATIS", "Oracle", "Tibero", "Tomcat"],
 };
 
 export const achievements: Achievement[] = [
@@ -51,18 +49,6 @@ export const achievements: Achievement[] = [
     figure: "5분 · 20회",
     detail: "실패 임계치 기반 IP 차단, 요청마다 DB 조회 없음",
     caseId: "case-ip-block",
-  },
-  {
-    label: "개인정보 보호",
-    figure: "원본 미전달",
-    detail: "카드번호 마스킹을 공통 함수로, Controller 단계에서 처리",
-    caseId: "case-masking",
-  },
-  {
-    label: "형상관리",
-    figure: "SVN 구축",
-    detail: "보안 PC 환경에 서버 구축, 브랜치 기반 관리",
-    caseId: "case-svn",
   },
 ];
 
@@ -197,68 +183,5 @@ export const caseStudies: CaseStudy[] = [
       },
     ],
     stack: ["Java", "Spring MVC", "Servlet Filter", "Scheduler", "SQL"],
-  },
-  {
-    id: "case-masking",
-    no: "04",
-    title: "카드번호 마스킹 및 개인정보 보호",
-    overview: "화면에서만 가리던 카드번호를, 서버가 화면으로 데이터를 넘기는 단계에서부터 가리도록 바꿨습니다.",
-    flow: {
-      problem: "JSP에서만 마스킹, 화면 전달 데이터에는 원본 포함",
-      solution: "공통 마스킹 함수를 Controller에서 적용",
-      result: "마스킹된 값만 화면에 전달",
-    },
-    problem: [
-      "카드번호는 JSP에서 마스킹해 화면에 표시하고 있었습니다.",
-      "하지만 Controller에서 JSP로 전달하는 데이터에는 원본 카드번호가 그대로 포함돼 있었습니다.",
-    ],
-    cause: [
-      "마스킹이 화면에 그리는 단계에서만 이뤄지는 구조여서, 화면에는 가려져 보여도 서버가 넘기는 데이터에는 원본이 남아 있었습니다.",
-    ],
-    role: ["카드번호 마스킹 공통 함수 개발", "Controller 처리 로직 수정"],
-    process: [
-      { title: "공통 함수 개발", body: "카드번호 마스킹 규칙을 공통 함수로 만들었습니다." },
-      { title: "Controller에서 마스킹", body: "Controller에서 공통 함수로 마스킹한 뒤 화면에 데이터를 넘기도록 수정했습니다." },
-      { title: "마스킹된 값만 전달", body: "화면에는 마스킹된 카드번호만 전달되도록 했습니다." },
-    ],
-    result: ["화면으로 전달되는 데이터에 원본 카드번호가 포함되지 않아 개인정보 노출 위험이 줄었습니다."],
-    decision: [
-      {
-        title: "표시 단계에서 전달 단계로",
-        body: "화면 표시 단계에 의존하던 마스킹을 서버의 데이터 전달 단계로 옮겨, 화면에 무엇이 그려지든 원본이 나가지 않게 했습니다.",
-      },
-      {
-        title: "공통 함수로 규칙 통일",
-        body: "마스킹 규칙을 한 곳에 모아 화면마다 따로 구현되지 않도록 했습니다.",
-      },
-    ],
-    stack: ["Java", "Spring MVC", "JSP"],
-  },
-  {
-    id: "case-svn",
-    no: "05",
-    title: "SVN 형상관리 환경 개선",
-    overview: "개발자 간 소스 공유와 버전 관리의 혼선을 줄이기 위해 형상관리 환경을 구축하고 관리 방식을 정비했습니다.",
-    flow: {
-      problem: "소스 공유와 버전 관리 과정에서 혼선",
-      solution: "보안 PC 환경에 SVN 서버 구축, 브랜치 기반 관리",
-      result: "최신 소스 공유 혼선 감소, 협업 효율 개선",
-    },
-    problem: ["개발자 간 소스를 공유하고 버전을 관리하는 과정에서 어떤 소스가 최신인지 혼선이 생겼습니다."],
-    cause: ["공용 저장소와 일관된 관리 방식이 갖춰져 있지 않아, 작업 기준이 되는 소스를 맞추기 어려웠습니다."],
-    role: ["SVN 서버 구축", "형상관리 체계 정비"],
-    process: [
-      { title: "SVN 서버 구축", body: "VPN 보안 PC 환경에 SVN 서버를 구축했습니다." },
-      { title: "형상관리 체계 정비", body: "소스를 저장소에 올리고 받는 방식을 정리했습니다." },
-      { title: "브랜치 기반 관리", body: "브랜치를 나눠 소스를 관리하는 방식으로 협업 환경을 개선했습니다." },
-    ],
-    result: ["최신 소스를 공유하는 과정의 혼선이 줄고 협업 효율이 개선됐습니다."],
-    decision: [
-      {
-        title: "보안 환경 안에 저장소 구축",
-        body: "작업 환경인 VPN 보안 PC 안에서 동작하도록 저장소를 같은 환경에 두었습니다.",
-      },
-    ],
-    stack: ["SVN"],
   },
 ];

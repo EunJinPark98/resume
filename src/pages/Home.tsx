@@ -146,7 +146,7 @@ function Experience() {
                   경력기술서 상세 보기
                   <Icon name="arrow-right" size={16} />
                 </a>
-                <span className="muted">사례 5건의 원인 분석과 기술적 판단</span>
+                <span className="muted">사례 3건의 원인 분석과 기술적 판단</span>
               </p>
             </div>
           </li>

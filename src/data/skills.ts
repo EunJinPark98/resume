@@ -13,7 +13,6 @@ export const skillGroups: SkillGroup[] = [
       { name: "iBATIS", where: "SQL 매핑, 조회 쿼리 분리" },
       { name: "Oracle · Tibero", where: "SQL 작성과 대량 조회 구조 개선" },
       { name: "Tomcat", where: "WAS 운영 환경, 당직 모니터링" },
-      { name: "SVN", where: "보안 PC 환경 서버 구축, 브랜치 기반 관리" },
     ],
   },
   {
