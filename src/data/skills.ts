@@ -8,7 +8,7 @@ export const skillGroups: SkillGroup[] = [
     caption: "통행료 대국민 웹서비스에서 직접 사용",
     rows: [
       { name: "Java", where: "서버 기능 개발, 일괄 보완 기능, 접근 차단 Filter" },
-      { name: "Spring MVC", where: "Controller · Service 개발, 스케줄러, 트랜잭션 처리" },
+      { name: "Spring MVC", where: "Controller · Service 개발, 스케줄러" },
       { name: "JSP · JavaScript · jQuery", where: "화면 기능 구현과 비동기 처리" },
       { name: "iBATIS", where: "SQL 매핑, 조회 쿼리 분리" },
       { name: "Oracle · Tibero", where: "SQL 작성과 대량 조회 구조 개선" },
