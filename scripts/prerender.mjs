@@ -42,7 +42,28 @@ function personJsonLd() {
   }).replace(/</g, "\\u003c");
 }
 
+function redirectPage(route) {
+  const to = `${BASE}${route.redirect}`;
+  return `<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>${esc(route.title)}</title>
+    <meta name="robots" content="noindex">
+    <link rel="canonical" href="${siteUrl(route.redirect)}">
+    <meta http-equiv="refresh" content="0; url=${to}">
+    <script>location.replace(${JSON.stringify(to)} + location.hash)</script>
+  </head>
+  <body>
+${route.render()}
+  </body>
+</html>
+`;
+}
+
 function page(route) {
+  if (route.redirect) return redirectPage(route);
   const url = siteUrl(route.path === "404.html" ? "" : route.path);
   const ogImage = siteUrl("og.png");
   const head = [
@@ -70,7 +91,10 @@ function page(route) {
     `<meta name="twitter:image" content="${ogImage}">`,
     `<link rel="icon" href="${BASE}favicon.svg" type="image/svg+xml">`,
     `<link rel="apple-touch-icon" href="${BASE}apple-touch-icon.png">`,
-    `<link rel="stylesheet" href="${BASE}fonts/pretendardvariable-dynamic-subset.css">`,
+    // 글꼴 CSS는 첫 화면 표시를 막지 않도록 비동기로 불러온다 (font-display: swap)
+    `<link rel="preload" href="${BASE}fonts/pretendardvariable-dynamic-subset.css" as="style">`,
+    `<link rel="stylesheet" href="${BASE}fonts/pretendardvariable-dynamic-subset.css" media="print" onload="this.media='all'">`,
+    `<noscript><link rel="stylesheet" href="${BASE}fonts/pretendardvariable-dynamic-subset.css"></noscript>`,
     ...cssFiles.map((f) => `<link rel="stylesheet" href="${BASE}${f}">`),
     `<script>document.documentElement.classList.add("js")</script>`,
     `<script type="module" src="${BASE}${entry.file}"></script>`,

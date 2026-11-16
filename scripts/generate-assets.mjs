@@ -1,6 +1,6 @@
 /**
  * 빌드된 dist/ 를 띄워 정적 자산을 만든다 (Playwright 필요 — 로컬에서 실행 후 커밋).
- *  - public/park-eunjin-resume.pdf : 경력기술서(/career/) 인쇄 레이아웃 → A4 PDF
+ *  - public/park-eunjin-resume.pdf : 경력기술서(/experience/) 인쇄 레이아웃 → A4 PDF
  *  - public/og.png                 : 1200×630 공유 미리보기 이미지
  *  - public/apple-touch-icon.png   : 180×180 아이콘
  * 사용: npm run build && npm run assets && npm run build
@@ -31,7 +31,7 @@ const browser = await chromium.launch();
 try {
   // 1) 이력서 PDF
   const page = await browser.newPage();
-  await page.goto(`${origin}career/`, { waitUntil: "networkidle" });
+  await page.goto(`${origin}experience/`, { waitUntil: "networkidle" });
   await page.emulateMedia({ media: "print" });
   await page.evaluate(() => document.fonts.ready);
   await page.pdf({

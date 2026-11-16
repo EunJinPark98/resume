@@ -36,6 +36,7 @@ const exists = (p) => stat(p).then(() => true, () => false);
 
 for (const [file, html] of htmlOf) {
   const page = relative(dist, file);
+  const isRedirect = /http-equiv="refresh"/.test(html);
   for (const [, attr, url] of html.matchAll(/\s(href|src|srcSet|srcset)="([^"]+)"/g)) {
     const urls = attr.toLowerCase() === "srcset" ? url.split(",").map((s) => s.trim().split(/\s+/)[0]) : [url];
     for (const u of urls) {
@@ -54,6 +55,7 @@ for (const [file, html] of htmlOf) {
     }
   }
   // 접근성 기본 점검
+  if (isRedirect) continue;
   for (const [img] of html.matchAll(/<img\b[^>]*>/g)) if (!/\salt="/.test(img)) errors.push(`${page}: alt 없는 이미지`);
   if (!/<html lang="ko">/.test(html)) errors.push(`${page}: lang 누락`);
   const h1 = (html.match(/<h1\b/g) ?? []).length;

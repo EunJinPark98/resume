@@ -1,7 +1,7 @@
 import { Icon } from "../components/Icon";
 import { Page, SectionHead, Tags } from "../components/Layout";
 import { SmartLink } from "../components/SmartLink";
-import { experience, timeline } from "../data/experience";
+import { experience } from "../data/experience";
 import { profile, strengths } from "../data/profile";
 import { projects } from "../data/projects";
 import { certifications, skillGroups } from "../data/skills";
@@ -26,8 +26,8 @@ function Hero({ now }: { now: Date }) {
           <div className="hero-intro">
             <p className="hero-summary">{profile.summary}</p>
             <div className="hero-cta">
-              <a className="btn btn-primary" href={href("#experience")}>
-                경력 보기
+              <a className="btn btn-primary" href={href("experience/")}>
+                경력기술서 보기
                 <Icon name="arrow-right" size={16} />
               </a>
               <a className="btn btn-outline" href={href(profile.resumePdf)} download="">
@@ -49,6 +49,10 @@ function Hero({ now }: { now: Date }) {
             <div>
               <dt>현 직장</dt>
               <dd>{profile.company}</dd>
+            </div>
+            <div>
+              <dt>담당 시스템</dt>
+              <dd>{experience.system}</dd>
             </div>
             <div>
               <dt>주력 기술</dt>
@@ -98,7 +102,6 @@ function About() {
 }
 
 function Experience() {
-  const [work, ...rest] = timeline;
   return (
     <section className="section section-alt" aria-labelledby="experience">
       <div className="container">
@@ -106,50 +109,47 @@ function Experience() {
         <ol className="timeline">
           <li className="timeline-item is-current" data-reveal>
             <div className="timeline-period">
-              <span>{work.period}</span>
+              <span>{experience.period}</span>
               <span className="badge">재직 중</span>
             </div>
             <div className="timeline-body">
               <h3 className="timeline-title">{experience.company}</h3>
-              <p className="timeline-org">
-                {experience.role} · {experience.project} <span className="muted">(발주처: {experience.client})</span>
-              </p>
-              <p>{experience.intro}</p>
+              <p className="timeline-org">{experience.duty}</p>
+              <dl className="exp-system">
+                <dt>담당 시스템</dt>
+                <dd>
+                  {experience.system} <span className="muted">({experience.project})</span>
+                </dd>
+              </dl>
               <div className="exp-columns">
+                <div>
+                  <h4 className="mini-title">핵심 업무</h4>
+                  <ul className="bullets">
+                    {experience.coreTasks.map((t) => (
+                      <li key={t}>{t}</li>
+                    ))}
+                  </ul>
+                </div>
                 <div>
                   <h4 className="mini-title">주요 성과</h4>
                   <ul className="checks">
                     {experience.highlights.map((h) => (
-                      <li key={h.text}>{h.text}</li>
-                    ))}
-                  </ul>
-                </div>
-                <div>
-                  <h4 className="mini-title">담당 업무</h4>
-                  <ul className="bullets">
-                    {experience.responsibilities.map((r) => (
-                      <li key={r}>{r}</li>
+                      <li key={h.text}>{h.caseId ? <a href={href(`experience/#${h.caseId}`)}>{h.text}</a> : h.text}</li>
                     ))}
                   </ul>
                 </div>
               </div>
+              <h4 className="mini-title">기술 스택</h4>
               <Tags items={experience.stack} />
+              <p className="exp-more">
+                <a className="btn btn-primary btn-small" href={href("experience/")}>
+                  경력기술서 상세 보기
+                  <Icon name="arrow-right" size={16} />
+                </a>
+                <span className="muted">사례 5건의 원인 분석과 기술적 판단</span>
+              </p>
             </div>
           </li>
-          {rest.map((t) => (
-            <li className="timeline-item" key={t.title} data-reveal>
-              <div className="timeline-period">
-                <span>{t.period}</span>
-                <span className="badge badge-muted">개인 프로젝트</span>
-              </div>
-              <div className="timeline-body">
-                <h3 className="timeline-title timeline-title-sm">{t.title}</h3>
-                <p className="timeline-org">{t.org}</p>
-                <p>{t.description}</p>
-                {t.stack ? <Tags items={t.stack} /> : null}
-              </div>
-            </li>
-          ))}
         </ol>
       </div>
     </section>
@@ -160,11 +160,17 @@ function Skills() {
   return (
     <section className="section section-alt" aria-labelledby="skills">
       <div className="container">
-        <SectionHead no="03" label="Tech Stack" id="skills" title="기술 스택" />
+        <SectionHead
+          no="03"
+          label="Tech Stack"
+          id="skills"
+          title="기술 스택"
+          lede="실무에서 직접 쓴 기술, 개인 프로젝트에서 쓴 기술, 학습한 기술을 나눠 적었습니다."
+        />
         <div className="skill-groups">
           {skillGroups.map((g) => (
-            <section key={g.title} className="skill-group" aria-labelledby={`skill-${g.title}`} data-reveal>
-              <h3 id={`skill-${g.title}`}>
+            <section key={g.id} className={`skill-group skill-group-${g.id}`} aria-labelledby={`skill-${g.id}`} data-reveal>
+              <h3 id={`skill-${g.id}`}>
                 {g.title}
                 <span>{g.caption}</span>
               </h3>

@@ -2,7 +2,7 @@ import { renderToStaticMarkup } from "react-dom/server";
 import { Page } from "./components/Layout";
 import { profile } from "./data/profile";
 import { projects } from "./data/projects";
-import { Career } from "./pages/Career";
+import { Experience } from "./pages/Experience";
 import { Home } from "./pages/Home";
 import { ProjectDetail } from "./pages/ProjectDetail";
 import { href } from "./lib/site";
@@ -18,6 +18,8 @@ export interface Route {
   render: () => string;
   /** 검색 노출 제외 */
   noindex?: boolean;
+  /** 이 경로로 이동만 시키는 페이지 (base 제외 경로) */
+  redirect?: string;
 }
 
 export { profile };
@@ -36,12 +38,27 @@ export function getRoutes(now: Date): Route[] {
       render: () => html(<Home now={now} updated={updated} />),
     },
     {
+      file: "experience/index.html",
+      path: "experience/",
+      title: "경력기술서 | 박은진 — Java/Spring 백엔드 · 풀스택 개발자",
+      description:
+        "(주)아이티포워드에서 한국도로공사 고속도로 통행료 대국민 웹서비스를 개발·운영한 경력기술서. 대량 조회 장애 해소, 로그인 누락 데이터 일괄 보완, IP 기반 비정상 로그인 차단, 카드번호 마스킹, SVN 형상관리 개선 사례.",
+      render: () => html(<Experience now={now} updated={updated} />),
+    },
+    {
+      // 예전 주소 호환: /career/ → /experience/
       file: "career/index.html",
       path: "career/",
-      title: "경력기술서 | 박은진 — 풀스택 개발자",
-      description:
-        "(주)아이티포워드 한국도로공사 통행료 대국민 웹서비스 개발·운영 경력과 개인 프로젝트를 정리한 경력기술서.",
-      render: () => html(<Career now={now} updated={updated} />),
+      title: "경력기술서로 이동 | 박은진",
+      description: "경력기술서는 /experience/ 로 옮겼습니다.",
+      noindex: true,
+      redirect: "experience/",
+      render: () =>
+        html(
+          <p>
+            경력기술서는 <a href={href("experience/")}>새 주소</a>로 옮겼습니다.
+          </p>,
+        ),
     },
     ...projects.map<Route>((p) => ({
       file: `projects/${p.slug}/index.html`,

@@ -36,26 +36,45 @@ export interface Strength {
   evidence: { label: string; href: string }[];
 }
 
-export interface TimelineEntry {
-  period: string;
-  title: string;
-  org: string;
-  kind: "work" | "project" | "education";
-  description: string;
-  highlights?: string[];
-  stack?: string[];
-  current?: boolean;
-}
-
 export interface Experience {
   company: string;
   period: string;
-  role: string;
+  duty: string;
+  system: string;
   project: string;
   client: string;
+  /** 경력기술서 상단 소개 */
+  overview: string;
+  /** 메인 페이지용 한 줄 소개 */
   intro: string;
-  responsibilities: string[];
-  highlights: { text: string }[];
+  coreTasks: string[];
+  highlights: { text: string; caseId?: string }[];
+  stack: string[];
+}
+
+export interface Achievement {
+  label: string;
+  /** 개선 전 (있을 때만) */
+  from?: string;
+  figure: string;
+  detail: string;
+  caseId: string;
+}
+
+/** 경력기술서 사례: 개요 → 문제 → 원인 → 역할 → 해결 → 결과 → 기술 → 의사결정 */
+export interface CaseStudy {
+  id: string;
+  no: string;
+  title: string;
+  overview: string;
+  /** 문제 → 해결 → 결과 요약 (한 줄씩) */
+  flow: { problem: string; solution: string; result: string };
+  problem: string[];
+  cause: string[];
+  role: string[];
+  process: { title: string; body: string }[];
+  result: string[];
+  decision: { title: string; body: string }[];
   stack: string[];
 }
 
@@ -78,6 +97,16 @@ export interface Project {
   stack: string[];
   keyFeatures: string[];
   problems: { title: string; body: string }[];
+  /** 해결하려는 사용자 문제 */
+  userProblem?: string[];
+  /** 서비스 구성 (계층별) */
+  architecture?: { layer: string; items: string[] }[];
+  /** 기술과 사용 목적 */
+  techChoices?: { name: string; use: string }[];
+  /** 운영하며 고친 문제 */
+  operations?: { title: string; body: string }[];
+  /** AI 도구 활용 방식 (순서) */
+  aiWorkflow?: string[];
   /** 역할 구분 (AI 활용 프로젝트에서 사람/AI 몫을 분리해 보여줌) */
   contribution?: { mine: string[]; ai?: string[]; note?: string };
   sections: ProjectSection[];
@@ -88,6 +117,7 @@ export interface Project {
 }
 
 export interface SkillGroup {
+  id: string;
   title: string;
   caption: string;
   rows: { name: string; where: string }[];

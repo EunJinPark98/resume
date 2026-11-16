@@ -39,7 +39,7 @@ export function Header() {
               </li>
             ))}
             <li>
-              <a href={href("career/")}>경력기술서</a>
+              <a href={href("experience/")}>경력기술서</a>
             </li>
           </ul>
           <a className="btn btn-small btn-outline" href={href(profile.resumePdf)} download="">

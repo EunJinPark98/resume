@@ -1,31 +1,43 @@
 import type { Certification, SkillGroup } from "./types";
 
-/** 숙련도 퍼센트·별점은 쓰지 않는다. 대신 ‘어디서 썼는지’를 적는다. */
+/** 숙련도 점수 대신 ‘어디서 썼는지’를 적는다. 실무 / 개인 프로젝트 / 학습을 구분한다. */
 export const skillGroups: SkillGroup[] = [
   {
-    title: "Core",
-    caption: "실무에서 사용",
+    id: "work",
+    title: "실무",
+    caption: "통행료 대국민 웹서비스에서 직접 사용",
     rows: [
-      { name: "Java · Spring", where: "통행료 웹서비스 서버 개발, Filter · 스케줄러, 트랜잭션" },
-      { name: "SQL · iBATIS", where: "Oracle · PostgreSQL · Tibero 쿼리 작성과 튜닝" },
-      { name: "JSP · JavaScript", where: "화면 기능 구현, jQuery · AJAX" },
+      { name: "Java", where: "서버 기능 개발, 일괄 보완 기능, 접근 차단 Filter" },
+      { name: "Spring MVC", where: "Controller · Service 개발, 스케줄러, 트랜잭션 처리" },
+      { name: "JSP · JavaScript · jQuery", where: "화면 기능 구현과 비동기 처리" },
+      { name: "iBATIS", where: "SQL 매핑, 조회 쿼리 분리" },
+      { name: "Oracle · Tibero", where: "SQL 작성과 대량 조회 구조 개선" },
+      { name: "Tomcat", where: "WAS 운영 환경, 당직 모니터링" },
+      { name: "SVN", where: "보안 PC 환경 서버 구축, 브랜치 기반 관리" },
     ],
   },
   {
-    title: "Project",
-    caption: "개인 프로젝트에서 사용",
+    id: "project",
+    title: "개인 프로젝트",
+    caption: "별빛 초대장 · 이 홈페이지",
     rows: [
-      { name: "React · Next.js · TypeScript", where: "별빛 초대장, 이 홈페이지" },
+      { name: "Next.js · React", where: "App Router 화면, Route Handler API" },
+      { name: "TypeScript", where: "별빛 초대장, 이 홈페이지" },
       { name: "Supabase", where: "PostgreSQL · Auth · Storage, RLS 정책" },
+      { name: "Vercel", where: "배포, Cron으로 만료 데이터 정리" },
+      { name: "Git · GitHub", where: "PR 단위 개발, GitHub Actions 배포" },
+      { name: "Claude Code", where: "기능 단위 구현 지시와 결과 코드 검토" },
     ],
   },
   {
-    title: "Tools",
-    caption: "개발 · 배포",
+    id: "study",
+    title: "학습 · 경험",
+    caption: "교육과정과 학습 프로젝트",
     rows: [
-      { name: "Git · GitHub", where: "PR 단위 개발과 버전 관리" },
-      { name: "Tomcat · JEUS", where: "실무 WAS 운영, 당직 모니터링" },
-      { name: "Vercel · GitHub Pages", where: "개인 서비스 배포" },
+      { name: "Spring Boot · MyBatis", where: "교육과정 팀 프로젝트" },
+      { name: "Spring Security", where: "교육과정 팀 프로젝트의 로그인 처리" },
+      { name: "WebSocket", where: "교육과정 팀 프로젝트의 실시간 채팅" },
+      { name: "Three.js", where: "3D 화면 학습 프로젝트" },
     ],
   },
 ];
