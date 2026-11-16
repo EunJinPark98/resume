@@ -1,16 +1,12 @@
-import { CaseStudy } from "../components/CaseStudy";
 import { Icon } from "../components/Icon";
 import { Page, SectionHead, Tags } from "../components/Layout";
 import { SmartLink } from "../components/SmartLink";
-import { caseStudies, experience, featuredCases, timeline } from "../data/experience";
-import { achievements, profile, strengths } from "../data/profile";
+import { experience, timeline } from "../data/experience";
+import { profile, strengths } from "../data/profile";
 import { projects } from "../data/projects";
 import { certifications, skillGroups } from "../data/skills";
 import type { Project } from "../data/types";
 import { href, tenure } from "../lib/site";
-
-/** 홈에 펼친 사례는 #id, 나머지는 경력기술서로 연결 */
-const caseHref = (id: string) => (featuredCases.some((c) => c.id === id) ? `#${id}` : `career/#${id}`);
 
 function Hero({ now }: { now: Date }) {
   return (
@@ -30,8 +26,8 @@ function Hero({ now }: { now: Date }) {
           <div className="hero-intro">
             <p className="hero-summary">{profile.summary}</p>
             <div className="hero-cta">
-              <a className="btn btn-primary" href={href("#cases")}>
-                경력 및 성과 보기
+              <a className="btn btn-primary" href={href("#experience")}>
+                경력 보기
                 <Icon name="arrow-right" size={16} />
               </a>
               <a className="btn btn-outline" href={href(profile.resumePdf)} download="">
@@ -69,33 +65,11 @@ function Hero({ now }: { now: Date }) {
   );
 }
 
-function Achievements() {
-  return (
-    <section className="section section-tight" aria-labelledby="achievements">
-      <div className="container">
-        <SectionHead no="01" label="Key Achievements" id="achievements" title="핵심 성과" />
-        <ol className="achievements">
-          {achievements.map((a) => (
-            <li key={a.label} data-reveal>
-              <a className="achievement" href={href(caseHref(a.caseId!))}>
-                <span className="achievement-label">{a.label}</span>
-                {a.from ? <span className="achievement-from">{a.from} →</span> : <span className="achievement-from" aria-hidden="true">&nbsp;</span>}
-                <span className="achievement-figure">{a.figure}</span>
-                <span className="achievement-detail">{a.detail}</span>
-              </a>
-            </li>
-          ))}
-        </ol>
-      </div>
-    </section>
-  );
-}
-
 function About() {
   return (
     <section className="section" aria-labelledby="about">
       <div className="container split">
-        <SectionHead no="02" label="About" id="about" title="문제를 발견하고, 구조로 해결합니다" />
+        <SectionHead no="01" label="About" id="about" title="문제를 발견하고, 구조로 해결합니다" />
         <ol className="strengths">
           {strengths.map((s) => (
             <li key={s.no} data-reveal>
@@ -105,6 +79,7 @@ function About() {
               <div>
                 <h3>{s.title}</h3>
                 <p>{s.body}</p>
+                {s.evidence.length ? (
                 <p className="evidence">
                   {s.evidence.map((e) => (
                     <a key={e.href} href={href(e.href)}>
@@ -112,6 +87,7 @@ function About() {
                     </a>
                   ))}
                 </p>
+                ) : null}
               </div>
             </li>
           ))}
@@ -126,7 +102,7 @@ function Experience() {
   return (
     <section className="section section-alt" aria-labelledby="experience">
       <div className="container">
-        <SectionHead no="03" label="Work Experience" id="experience" title="경력" />
+        <SectionHead no="02" label="Work Experience" id="experience" title="경력" />
         <ol className="timeline">
           <li className="timeline-item is-current" data-reveal>
             <div className="timeline-period">
@@ -144,7 +120,7 @@ function Experience() {
                   <h4 className="mini-title">주요 성과</h4>
                   <ul className="checks">
                     {experience.highlights.map((h) => (
-                      <li key={h.text}>{h.caseId ? <a href={href(caseHref(h.caseId))}>{h.text}</a> : h.text}</li>
+                      <li key={h.text}>{h.text}</li>
                     ))}
                   </ul>
                 </div>
@@ -180,38 +156,11 @@ function Experience() {
   );
 }
 
-function Cases() {
-  const others = caseStudies.filter((c) => !c.featured);
-  return (
-    <section className="section" aria-labelledby="cases">
-      <div className="container">
-        <SectionHead no="04" label="Problem Solving" id="cases" title="실무 문제 해결 사례" />
-        <div className="cases">
-          {featuredCases.map((c) => (
-            <CaseStudy key={c.id} data={c} collapsible />
-          ))}
-        </div>
-        {others.length ? (
-          <div className="more-cases">
-            <p>
-              {others.map((c) => c.title).join(", ")} 사례는 경력기술서에서 볼 수 있습니다.
-            </p>
-            <a className="btn btn-outline" href={href("career/")}>
-              경력기술서 보기
-              <Icon name="arrow-right" size={16} />
-            </a>
-          </div>
-        ) : null}
-      </div>
-    </section>
-  );
-}
-
 function Skills() {
   return (
     <section className="section section-alt" aria-labelledby="skills">
       <div className="container">
-        <SectionHead no="05" label="Tech Stack" id="skills" title="기술 스택" />
+        <SectionHead no="03" label="Tech Stack" id="skills" title="기술 스택" />
         <div className="skill-groups">
           {skillGroups.map((g) => (
             <section key={g.title} className="skill-group" aria-labelledby={`skill-${g.title}`} data-reveal>
@@ -289,7 +238,7 @@ function Projects() {
   return (
     <section className="section" aria-labelledby="projects">
       <div className="container">
-        <SectionHead no="06" label="Project" id="projects" title="프로젝트" />
+        <SectionHead no="04" label="Personal Project" id="projects" title="개인 프로젝트" />
         <div className="projects">
           {projects.map((p) => (
             <ProjectFeature key={p.slug} p={p} />
@@ -306,7 +255,7 @@ function Certifications() {
   return (
     <section className="section section-tight section-alt" aria-labelledby="certifications">
       <div className="container split">
-        <SectionHead no="07" label="Certifications" id="certifications" title="자격증" />
+        <SectionHead no="05" label="Certifications" id="certifications" title="자격증" />
         <div>
           <ul className="certs">
             {acquired.map((c) => (
@@ -339,7 +288,7 @@ function Contact() {
     <section className="section contact" aria-labelledby="contact">
       <div className="container">
         <p className="eyebrow eyebrow-invert">
-          <span className="eyebrow-no">08</span>
+          <span className="eyebrow-no">06</span>
           <span aria-hidden="true" className="eyebrow-rule" />
           Contact
         </p>
@@ -398,10 +347,8 @@ export function Home({ now, updated }: { now: Date; updated: string }) {
   return (
     <Page updated={updated}>
       <Hero now={now} />
-      <Achievements />
       <About />
       <Experience />
-      <Cases />
       <Skills />
       <Projects />
       <Certifications />

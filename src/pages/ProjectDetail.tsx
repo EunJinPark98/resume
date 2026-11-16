@@ -17,7 +17,7 @@ export function ProjectDetail({ p, updated }: { p: Project; updated: string }) {
             <nav aria-label="현재 위치" className="breadcrumb">
               <a href={href("")}>홈</a>
               <span aria-hidden="true">/</span>
-              <a href={href("#projects")}>프로젝트</a>
+              <a href={href("#projects")}>개인 프로젝트</a>
               <span aria-hidden="true">/</span>
               <span aria-current="page">{p.name}</span>
             </nav>
@@ -174,7 +174,7 @@ export function ProjectDetail({ p, updated }: { p: Project; updated: string }) {
         <nav className="container detail-nav" aria-label="프로젝트 이동">
           <a href={href("#projects")} className="text-link">
             <Icon name="arrow-left" size={16} />
-            전체 프로젝트
+            개인 프로젝트 목록
           </a>
           {next.slug !== p.slug ? (
             <a href={href(`projects/${next.slug}/`)} className="detail-next">

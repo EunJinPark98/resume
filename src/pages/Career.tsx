@@ -1,6 +1,5 @@
-import { CaseStudy } from "../components/CaseStudy";
 import { Page, Tags } from "../components/Layout";
-import { caseStudies, experience } from "../data/experience";
+import { experience } from "../data/experience";
 import { profile, strengths } from "../data/profile";
 import { projects } from "../data/projects";
 import { certifications, skillGroups } from "../data/skills";
@@ -84,7 +83,7 @@ export function Career({ now, updated }: { now: Date; updated: string }) {
                 <h4 className="mini-title">주요 성과</h4>
                 <ul className="checks">
                   {experience.highlights.map((h) => (
-                    <li key={h.text}>{h.caseId ? <a href={`#${h.caseId}`}>{h.text}</a> : h.text}</li>
+                    <li key={h.text}>{h.text}</li>
                   ))}
                 </ul>
                 <Tags items={experience.stack} />
@@ -92,17 +91,8 @@ export function Career({ now, updated }: { now: Date; updated: string }) {
             </div>
           </section>
 
-          <section className="doc-section doc-section-stack" aria-labelledby="doc-cases">
-            <h2 id="doc-cases">문제 해결 사례</h2>
-            <div className="cases">
-              {caseStudies.map((c) => (
-                <CaseStudy key={c.id} data={c} />
-              ))}
-            </div>
-          </section>
-
           <section className="doc-section" aria-labelledby="doc-projects">
-            <h2 id="doc-projects">프로젝트</h2>
+            <h2 id="doc-projects">개인 프로젝트</h2>
             <div>
               {projects.map((p) => (
                 <div className="doc-job" key={p.slug}>

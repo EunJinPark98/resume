@@ -32,7 +32,7 @@ export function getRoutes(now: Date): Route[] {
       path: "",
       title: "박은진 | 풀스택 개발자 — Java/Spring · React",
       description:
-        "Java/Spring 기반 대국민 웹서비스 운영 경험과 React/Next.js 서비스 개발 역량을 갖춘 풀스택 개발자 박은진의 이력서입니다. 월말 조회 장애 해소, 로그인 민원 하루 약 5건→주 1건 미만 등 실무 개선 사례를 소개합니다.",
+        "Java/Spring 기반 대국민 웹서비스 운영 경험과 React/Next.js 서비스 개발 역량을 갖춘 풀스택 개발자 박은진의 이력서입니다. 통행료 대국민 웹서비스 개발·운영 경력과 개인 프로젝트를 소개합니다.",
       render: () => html(<Home now={now} updated={updated} />),
     },
     {
@@ -40,7 +40,7 @@ export function getRoutes(now: Date): Route[] {
       path: "career/",
       title: "경력기술서 | 박은진 — 풀스택 개발자",
       description:
-        "(주)아이티포워드 한국도로공사 통행료 대국민 웹서비스 개발·운영 경력과 문제 해결 사례(대용량 조회 장애, 누락 데이터 자동 보완, IP 자동 차단, 카드번호 마스킹)를 정리한 경력기술서.",
+        "(주)아이티포워드 한국도로공사 통행료 대국민 웹서비스 개발·운영 경력과 개인 프로젝트를 정리한 경력기술서.",
       render: () => html(<Career now={now} updated={updated} />),
     },
     ...projects.map<Route>((p) => ({

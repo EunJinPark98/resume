@@ -36,35 +36,6 @@ export interface Strength {
   evidence: { label: string; href: string }[];
 }
 
-export interface Achievement {
-  /** 큰 숫자/키워드 */
-  figure: string;
-  /** 숫자 앞의 비교 기준 (예: 하루 약 5건 →) */
-  from?: string;
-  unit?: string;
-  label: string;
-  detail: string;
-  caseId?: string;
-}
-
-export interface CaseStudy {
-  id: string;
-  no: string;
-  title: string;
-  summary: string;
-  featured: boolean;
-  situation: string[];
-  cause: string[];
-  approach: string[];
-  implementation: string[];
-  result: string[];
-  before: string;
-  after: string;
-  /** 설계상 감수한 점 · 면접에서 설명할 포인트 */
-  note?: string;
-  stack: string[];
-}
-
 export interface TimelineEntry {
   period: string;
   title: string;
@@ -84,7 +55,7 @@ export interface Experience {
   client: string;
   intro: string;
   responsibilities: string[];
-  highlights: { text: string; caseId?: string }[];
+  highlights: { text: string }[];
   stack: string[];
 }
 

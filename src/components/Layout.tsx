@@ -4,11 +4,9 @@ import { href } from "../lib/site";
 import { Icon } from "./Icon";
 
 export const navItems = [
-  { id: "achievements", label: "성과" },
   { id: "experience", label: "경력" },
-  { id: "cases", label: "문제 해결" },
   { id: "skills", label: "기술" },
-  { id: "projects", label: "프로젝트" },
+  { id: "projects", label: "개인 프로젝트" },
   { id: "contact", label: "연락처" },
 ];
 
